@@ -3,6 +3,24 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>build</ToolCommandName>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/Ubiety/Ubiety.Build.Tool</PackageProjectUrl>
+        <Description>Build tool for Ubiety projects based on Nuke.</Description>
+        <PackageIcon>hammer.png</PackageIcon>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="../../images/hammer.png" Pack="true" PackagePath="" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Nuke.Common" Version="0.24.7" />
+      <PackageDownload Include="GitVersion.Tool" Version="[5.1.1]" />  
+    </ItemGroup>
 </Project>
