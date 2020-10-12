@@ -19,15 +19,16 @@ namespace Ubiety.Build.Tool
         private readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
         [Parameter] private readonly bool? Cover = true;
+        [Parameter] private readonly string NuGetKey;
+        [Parameter] private readonly string SonarKey;
+        [Parameter] private readonly string SonarProjectKey;
 
         [GitRepository] private readonly GitRepository GitRepository;
         [GitVersion(DisableOnUnix = true)] private readonly GitVersion GitVersion;
-        [Parameter] private readonly string NuGetKey;
+
         private const string NuGetSource = "https://api.nuget.org/v3/index.json";
 
         [Solution] private readonly Solution Solution;
-        [Parameter] private readonly string SonarKey;
-        [Parameter] private readonly string SonarProjectKey;
         
         private AbsolutePath SourceDirectory => RootDirectory / "src";
         private AbsolutePath TestsDirectory => RootDirectory / "tests";
@@ -139,8 +140,8 @@ namespace Ubiety.Build.Tool
                     true);
             });
 
-        private Target Appveyor => _ => _
-            .DependsOn(Test, SonarEnd, Publish);
+        private Target CI => _ => _
+            .DependsOn(Clean, Test, SonarEnd, Publish);
 
         public static int Main()
         {
