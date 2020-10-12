@@ -1,5 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1.302-alpine3.12
-RUN apk add dos2unix bash
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1.402-alpine3.12
 WORKDIR /ubiety
 
 deps:
